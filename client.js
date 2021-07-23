@@ -47,13 +47,9 @@ function deleteItem() {
 function calculatePeriodicSalary(periodsPerYear) {
     // sum up all annual salary data
     let totalAnnualSalary = 0;
-    let salaries = $('.salaryEntry');
-    console.log('number of salaries: ', salaries.length)
-    for (let i = 0; i < salaries.length; i++) {
-        salary = parseInt(salaries.slice(i,i+1).text());
-        console.log(salary);
-        totalAnnualSalary += salary;
-    }
+    $('.salaryEntry').each(function(i) {
+        totalAnnualSalary += parseInt($(this).text());
+        });
     // clear out the monthly salary and add it to dom
     let periodicDisplay = $('h3');
     periodicDisplay.empty();
