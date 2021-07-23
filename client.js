@@ -48,10 +48,24 @@ function calculatePeriodicSalary(periodsPerYear) {
     // sum up all annual salary data
     let totalAnnualSalary = 0;
     $('.salaryEntry').each(function(i) {
-        totalAnnualSalary += parseInt($(this).text());
+        totalAnnualSalary += Number($(this).text());
         });
     // clear out the monthly salary and add it to dom
     let periodicDisplay = $('h3');
     periodicDisplay.empty();
     periodicDisplay.append(`Monthly Salary: ${totalAnnualSalary/periodsPerYear}`)
 }
+
+
+
+// add additional functionality
+// add red highlighting
+// add styling
+
+
+// next time I would do what Edan did in the Friday example - just use a global array,
+    // then put the row data into an object, push that to the array, and
+    // update the display based on that, rather than doing the jquery salary calculation.
+    // one reason could be you can change the row data and the monthly salary calculation
+    // won't necessarily update. Which I guess isn't a big deal in this context, but maybe
+    // could be in a more complicated app?
