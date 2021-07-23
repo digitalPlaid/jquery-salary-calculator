@@ -33,15 +33,29 @@ function addItem() {
                     <td>${lastName}</td>
                     <td>${idNumber}</td>
                     <td>${jobTitle}</td>
-                    <td>${annualSalary}</td>
+                    <td class="salaryEntry">${annualSalary}</td>
                     <td><input type="button" class="deleteBtn" value="Delete"></td>
                 </tr>`);
-    // if total monthly cost > 20000 make it a red background
-    // add delete button
+    calculatePeriodicSalary(12);
 }
 
 function deleteItem() {
-    // delete the row that this button is located in upon click
-    // remove the salary from the reported total
-    console.log('hi');
+    $(this).closest('tr').remove();
+    calculatePeriodicSalary(12);
+}
+
+function calculatePeriodicSalary(periodsPerYear) {
+    // sum up all annual salary data
+    let totalAnnualSalary = 0;
+    let salaries = $('.salaryEntry');
+    console.log('number of salaries: ', salaries.length)
+    for (let i = 0; i < salaries.length; i++) {
+        salary = parseInt(salaries.slice(i,i+1).text());
+        console.log(salary);
+        totalAnnualSalary += salary;
+    }
+    // clear out the monthly salary and add it to dom
+    let periodicDisplay = $('h3');
+    periodicDisplay.empty();
+    periodicDisplay.append(`Monthly Salary: ${totalAnnualSalary/periodsPerYear}`)
 }
