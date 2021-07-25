@@ -57,7 +57,6 @@ function calculatePeriodicSalary(periodsPerYear) {
     // if monthySalary goes above 20k add red 
     // if it is below 20k and it has the class, make it white
     if (monthlySalary > 20000) {
-        console.log('should be toggling class')
         $('.salaryEntry').addClass('overTwenty');
     } else if (monthlySalary <= 20000 && $('.salaryEntry').hasClass('overTwenty')) {
         $('.salaryEntry').removeClass('overTwenty');
