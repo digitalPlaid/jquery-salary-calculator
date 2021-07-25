@@ -1,10 +1,6 @@
 .overTwenty {
     background-color: #ff6161;
 }
-/* remember to:
- add in styling for numbers and trim leading 0s
-right-align numbers
-*/
 table, th, td {
     border: solid 1px black;
     padding: 8px;

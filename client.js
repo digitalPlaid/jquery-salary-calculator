@@ -24,13 +24,9 @@ function addItem() {
     idElement.val('');
     jobElement.val('');
     salaryElement.val('');
-    // data validation - remember to trim leading zeros
     // select table
     let table = $('tbody');
     // append table row containing relevant data
-    // hideous, but splits formats the input number to the nearest cent
-    let salaryString = Number(annualSalary.split('.')[0]).toLocaleString() + '.' + Number('.' + annualSalary.split('.')[1]).toFixed(2).split('.')[1];
-    // bunch of weird manipulations
     table.append(`<tr>
                     <td>${firstName}</td>
                     <td>${lastName}</td>
@@ -52,7 +48,6 @@ function calculatePeriodicSalary(periodsPerYear) {
     let totalAnnualSalary = 0;
     $('.salaryEntry').each(function(i) {
         totalAnnualSalary += Number($(this).text().slice(1).split(',').join('')); // grab the number that is stored in the table.
-        // in future might create a function called 'unformatNumber' to change the format '$...xxx,xxx.xx' to ...xxxxxx.xx, a typical js number
         });
     // clear out the monthly salary and add it to dom
     let periodicDisplay = $('h3');
@@ -80,10 +75,16 @@ function formatNumber(numAsString) {
 // probably depends on what laws and rules accountants must follow.
 // also probably I'd learn how to use regular expressions. Seems like the formatting of the numbers would be great for that.
 
-// trim leading 0s
-// on display round to nearest cent
-// add in commas and dollar sign.
-// mabe we can add the dollar in with css or something? or just slice it after the first digit of each string
+// in this case the period is monthly. It wouldn't be too hard to update the inputs to a form and include a selector for a more general
+    // periodic display, so that you could do semi-annual calculations, etc. but I'll leave that for a future project.
+
+// it also might be nice to try a form, rather than disconnected inputs with type button. it'd expand my comfort with different html tags
+
+// it might also be good to decouple the calculation of the periodic salary from the presentation of the periodic salary
+
+// in future might create a function called 'unformatNumber' to change the format '$...xxx,xxx.xx' to ...xxxxxx.xx, a typical js number
+    // rather than what I've got now, which is in the first jquery call in calculatePeriodicSalary.
+    // it's an eye sore and tough to read, i feel like. if that was hidden in a function it helps the readability of the calculatePeriodicDisplay
 
 
 // next time I would do what Edan did in the Friday example - just use a global array,
