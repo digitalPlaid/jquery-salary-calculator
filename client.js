@@ -24,7 +24,7 @@ function addItem() {
     idElement.val('');
     jobElement.val('');
     salaryElement.val('');
-    // data validation
+    // data validation - remember to trim leading zeros
     // select table
     let table = $('tbody');
     // append table row containing relevant data
@@ -53,7 +53,16 @@ function calculatePeriodicSalary(periodsPerYear) {
     // clear out the monthly salary and add it to dom
     let periodicDisplay = $('h3');
     periodicDisplay.empty();
-    periodicDisplay.append(`Monthly Salary: ${totalAnnualSalary/periodsPerYear}`)
+    let monthlySalary = totalAnnualSalary/periodsPerYear
+    // if monthySalary goes above 20k add red 
+    // if it is below 20k and it has the class, make it white
+    if (monthlySalary > 20000) {
+        console.log('should be toggling class')
+        $('.salaryEntry').addClass('overTwenty');
+    } else if (monthlySalary <= 20000 && $('.salaryEntry').hasClass('overTwenty')) {
+        $('.salaryEntry').removeClass('overTwenty');
+    }
+    periodicDisplay.append(`Monthly Salary: ${monthlySalary}`)
 }
 
 
